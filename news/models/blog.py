@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.contrib.postgres.fields import ArrayField
-from django.db.models import ForeignKey, CASCADE, CharField, IntegerField, ImageField
+from django.db.models import ForeignKey, CASCADE, CharField, IntegerField, ImageField, TextField
 from django.utils.text import slugify
 
 from news.models.blog_handbook import Region, Category
@@ -11,7 +11,7 @@ from users.models import User
 class Blog(SlugBaseModel, TimeBaseModel):
     name = CharField(max_length=255)
     category = ForeignKey(Category, CASCADE)
-    description = RichTextField()
+    description = TextField()
     region = ForeignKey(Region, CASCADE)
     author = ForeignKey(User, CASCADE)
     tag = ArrayField(CharField(max_length=255))

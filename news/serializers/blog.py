@@ -1,7 +1,9 @@
 from django.db.models import F
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 from rest_framework.fields import HiddenField, CurrentUserDefault, IntegerField
 from rest_framework.serializers import ModelSerializer
 
+from news.documents.adverts import BlogDocument
 from news.models import Blog
 from news.serializers.blog_handbook import CategoryModelSerializer, RegionModelSerializer
 
@@ -20,3 +22,9 @@ class BlogModelSerializer(ModelSerializer):
     class Meta:
         model = Blog
         exclude = ('slug', 'created_at', 'updated_at')
+
+
+class BlogDocumentSerializer(DocumentSerializer):
+    class Meta:
+        document = BlogDocument
+        fields = ('id', 'name', 'description')

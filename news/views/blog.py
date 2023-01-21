@@ -1,13 +1,16 @@
+from django_elasticsearch_dsl_drf.filter_backends import SearchFilterBackend, CompoundSearchFilterBackend
+from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 import os
 
+from news.documents.adverts import BlogDocument
 from news.filters import BlogFilter
 from news.models import Blog
 from news.permissions import ReadOnly
-from news.serializers.blog import BlogModelSerializer
+from news.serializers.blog import BlogModelSerializer, BlogDocumentSerializer
 from root.settings import BASE_DIR
 
 
@@ -24,3 +27,10 @@ class BlogModelViewSet(ModelViewSet):
             image_url = Blog.objects.get(id=kwargs.get('pk')).image.url
             os.remove(BASE_DIR / image_url)
         return super().destroy(request, *args, **kwargs)
+
+
+class BlogDocumentViewSet(DocumentViewSet):
+    document = BlogDocument
+    serializer_class = BlogDocumentSerializer
+    filter_backends = [CompoundSearchFilterBackend]
+    search_fields = ('name', 'description')
