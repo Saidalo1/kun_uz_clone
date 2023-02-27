@@ -1,10 +1,11 @@
-from django_elasticsearch_dsl_drf.filter_backends import SearchFilterBackend, CompoundSearchFilterBackend
+import os
+
+from django_elasticsearch_dsl_drf.filter_backends import CompoundSearchFilterBackend
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
-import os
 
 from news.documents.adverts import BlogDocument
 from news.filters import BlogFilter
@@ -34,3 +35,4 @@ class BlogDocumentViewSet(DocumentViewSet):
     serializer_class = BlogDocumentSerializer
     filter_backends = [CompoundSearchFilterBackend]
     search_fields = ('name', 'description')
+
