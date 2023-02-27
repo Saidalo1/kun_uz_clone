@@ -185,9 +185,9 @@ Thank you!
 
 ## License
 
-<a href="https://github.com/Saidalo1/online_shop_api/blob/master/LICENSE.md">
+<a href="https://github.com/Saidalo1/kun_uz_clone/blob/master/LICENSE.md">
     <img alt="NPM" src="https://img.shields.io/npm/l/license?style=for-the-badge">
 </a>&nbsp;&nbsp;
 
 This project is licensed under the MIT License - see
-the [LICENSE.md](https://github.com/Saidalo1/online_shop_api/blob/master/LICENSE.md) file for details.
+the [LICENSE.md](https://github.com/Saidalo1/kun_uz_clone/blob/master/LICENSE.md) file for details.
